@@ -2,21 +2,21 @@
 
 ## Concluído
 
-- [x] Criar tela de login.
-- [x] Criar tela de cadastro.
-- [x] Salvar usuários no SQLite.
-- [x] Gerar hash da senha.
-- [x] Criar catálogo de produtos.
-- [x] Criar busca de produtos.
-- [x] Criar filtro por categoria.
-- [x] Criar tela de detalhes do produto.
-- [x] Criar carrinho de compras.
-- [x] Criar resumo de checkout.
-- [x] Criar consultor de IA.
-- [x] Criar backend local para OpenAI.
-- [x] Criar fallback local de IA.
-- [x] Melhorar layout visual do app.
-- [x] Criar documentação em PDF.
+Criar tela de login.
+Criar tela de cadastro.
+Salvar usuários no SQLite.
+Gerar hash da senha.
+Criar catálogo de produtos.
+Criar busca de produtos.
+Criar filtro por categoria.
+Criar tela de detalhes do produto.
+Criar carrinho de compras.
+Criar resumo de checkout.
+criar consultor de IA.
+Criar backend local para OpenAI.
+Criar fallback local de IA.
+ Melhorar layout visual do app.
+ Criar documentação em PDF.
 
 ## Para próxima versão
 
