@@ -1,4 +1,4 @@
-﻿import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/controllers/carrinho_controller.dart';
 import 'package:pi/src/models/carrinho_item_model.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/utils/preco_utils.dart';
@@ -115,8 +115,8 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               Expanded(
                 child: Text(
                   temFreteGratis
-                      ? 'VocÃª ganhou frete grÃ¡tis'
-                      : 'Faltam ${PrecoUtils.formatar(valorRestanteFrete)} para frete grÃ¡tis',
+                      ? 'Voce ganhou frete gratis'
+                      : 'Faltam ${PrecoUtils.formatar(valorRestanteFrete)} para frete gratis',
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
@@ -160,10 +160,21 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                   color: AppTheme.surfaceLight,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: const Icon(
-                  Icons.fitness_center,
-                  color: AppTheme.primary,
-                ),
+                child: item.produto.imagem.isEmpty
+                    ? const Icon(
+                        Icons.fitness_center,
+                        color: AppTheme.primary,
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Image.asset(
+                            item.produto.imagem,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -268,7 +279,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
             const SizedBox(height: 8),
             _linhaResumo(
               'Entrega',
-              valorRestanteFrete == 0 ? 'GrÃ¡tis' : 'A calcular',
+              valorRestanteFrete == 0 ? 'Gratis' : 'A calcular',
             ),
             const Divider(height: 24, color: AppTheme.border),
             _linhaResumo(
@@ -343,7 +354,7 @@ class _CarrinhoVazio extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Seu carrinho estÃ¡ vazio',
+              'Seu carrinho esta vazio',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
@@ -369,4 +380,3 @@ class _CarrinhoVazio extends StatelessWidget {
     );
   }
 }
-
