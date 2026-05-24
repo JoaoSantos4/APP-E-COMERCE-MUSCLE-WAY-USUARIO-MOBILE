@@ -1,4 +1,4 @@
-﻿import 'package:pi/src/controllers/sessao_controller.dart';
+import 'package:pi/src/controllers/sessao_controller.dart';
 import 'package:pi/src/database/usuario_database.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/widgets/botao_widget.dart';
@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  static const adminEmail = 'zenzenitsu12@gmail.com';
 
   Future<void> acessar() async {
     if (!formKey.currentState!.validate()) return;
@@ -31,13 +32,17 @@ class _LoginPageState extends State<LoginPage> {
 
     if (usuario != null) {
       SessaoController.entrar(usuario);
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+
+      final emailNormalizado = emailController.text.trim().toLowerCase();
+      final rotaDestino = emailNormalizado == adminEmail ? '/admin' : '/home';
+
+      Navigator.pushNamedAndRemoveUntil(context, rotaDestino, (route) => false);
       return;
     }
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('E-mail ou senha invÃ¡lidos.'),
+        content: Text('E-mail ou senha invalidos.'),
         backgroundColor: AppTheme.danger,
       ),
     );
@@ -89,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Acesse ofertas, recomendaÃ§Ãµes e seu carrinho Muscleway.',
+                        'Acesse ofertas, recomendacoes e seu carrinho Muscleway.',
                         style: TextStyle(
                           color: AppTheme.textMuted,
                           fontSize: 15,
@@ -103,8 +108,8 @@ class _LoginPageState extends State<LoginPage> {
                         controller: emailController,
                         obscure: false,
                         validatorless: Validatorless.multiple([
-                          Validatorless.required('Campo obrigatÃ³rio'),
-                          Validatorless.email('E-mail invÃ¡lido'),
+                          Validatorless.required('Campo obrigatorio'),
+                          Validatorless.email('E-mail invalido'),
                         ]),
                       ),
                       const SizedBox(height: 16),
@@ -114,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                         obscure: true,
                         validatorless: Validatorless.required(
-                          'Campo obrigatÃ³rio',
+                          'Campo obrigatorio',
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -169,7 +174,7 @@ class _LoginBenefitStrip extends StatelessWidget {
           SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Produtos selecionados, compra segura e sugestÃµes inteligentes.',
+              'Produtos selecionados, compra segura e sugestoes inteligentes.',
               style: TextStyle(color: AppTheme.textMuted, height: 1.35),
             ),
           ),
@@ -178,4 +183,3 @@ class _LoginBenefitStrip extends StatelessWidget {
     );
   }
 }
-

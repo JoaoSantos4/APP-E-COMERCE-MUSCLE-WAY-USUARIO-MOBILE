@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 
 import 'package:pi/src/models/usuario_model.dart';
 import 'package:crypto/crypto.dart';
@@ -8,17 +8,12 @@ import 'package:sqflite/sqflite.dart';
 class UsuarioDatabase {
   static Database? _database;
 
-  // =========================
-  // INICIAR BANCO
-  // =========================
-
   static Future<Database> getDatabase() async {
     if (_database != null) {
       return _database!;
     }
 
     final databasePath = await getDatabasesPath();
-
     final path = join(databasePath, 'muscleway.db');
 
     _database = await openDatabase(
@@ -38,10 +33,6 @@ class UsuarioDatabase {
 
     return _database!;
   }
-
-  // =========================
-  // GERAR HASH
-  // =========================
 
   static String gerarHash(String senha) {
     return sha256.convert(utf8.encode(senha)).toString();
@@ -88,6 +79,13 @@ class UsuarioDatabase {
     return usuario != null;
   }
 
+  static Future<List<UsuarioModel>> listarUsuarios() async {
+    final db = await getDatabase();
+    final resultado = await db.query('usuarios', orderBy: 'id DESC');
+
+    return resultado.map(UsuarioModel.fromMap).toList();
+  }
+
   static Future<UsuarioModel?> buscarUsuarioPorLogin({
     required String email,
     required String senha,
@@ -109,4 +107,3 @@ class UsuarioDatabase {
     return UsuarioModel.fromMap(resultado.first);
   }
 }
-

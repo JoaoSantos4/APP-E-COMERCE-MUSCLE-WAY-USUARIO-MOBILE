@@ -1,4 +1,5 @@
-﻿import 'package:pi/src/pages/cadastro_page.dart';
+import 'package:pi/src/pages/admin_page.dart';
+import 'package:pi/src/pages/cadastro_page.dart';
 import 'package:pi/src/pages/carrinho_page.dart';
 import 'package:pi/src/pages/chat_ia_page.dart';
 import 'package:pi/src/pages/home_page.dart';
@@ -18,6 +19,7 @@ class AppMuscley extends StatelessWidget {
       theme: AppTheme.dark,
       routes: {
         '/': (_) => const LoginPage(),
+        '/admin': (_) => const AdminPage(),
         '/cadastro': (_) => const CadastroPage(),
         '/home': (_) => const HomePage(),
         '/carrinho': (_) => const CarrinhoPage(),
@@ -27,4 +29,3 @@ class AppMuscley extends StatelessWidget {
     );
   }
 }
-
