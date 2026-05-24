@@ -1,35 +1,58 @@
-# Muscleway
+# PI
 
-Aplicativo Flutter de catálogo de suplementos com login, cadastro, busca,
-produtos, carrinho de compras e consultor de IA.
+PI e um aplicativo Flutter de e-commerce de suplementos com login, cadastro, catalogo de produtos, busca, carrinho de compras e consultor de IA.
 
-## Destaques
+## Recursos principais
 
-- Identidade visual premium em preto, branco e azul bebê.
-- Home com campanha de destaque, benefícios de compra, busca e departamentos.
-- Cards de produto com preço no Pix, preço no cartão, categoria e CTA claro.
-- Página de produto com resumo comercial, desconto no Pix e benefícios.
-- Carrinho com barra de frete grátis, resumo de checkout e finalização.
-- Aba exclusiva de IA para sugerir suplementos por objetivo do cliente.
-- Login, cadastro, sessão do usuário e banco local com SQLite.
+- Login, cadastro e sessao do usuario.
+- Catalogo de suplementos com categorias e busca.
+- Pagina de produto com preco, desconto no Pix e detalhes comerciais.
+- Carrinho de compras com resumo do pedido.
+- Banco local SQLite para usuarios e produtos.
+- Consultor de IA com backend local para recomendacoes de suplementos.
 
-## Como rodar
+## Requisitos
+
+- Flutter SDK instalado.
+- Dart SDK, normalmente ja incluso no Flutter.
+- Emulador Android, dispositivo fisico ou navegador para rodar o app.
+- Node.js 18+ ou Dart para executar o backend de IA.
+
+## Como executar o app
+
+Na raiz do projeto, rode:
 
 ```bash
 flutter pub get
 flutter run
 ```
 
-## Como rodar a IA real
+Para escolher um dispositivo especifico:
 
-Nunca coloque a chave da OpenAI dentro do app Flutter. Use o backend local:
+```bash
+flutter devices
+flutter run -d <id-do-dispositivo>
+```
+
+Exemplos comuns:
+
+```bash
+flutter run -d chrome
+flutter run -d emulator-5554
+```
+
+## Como executar o backend de IA
+
+O app funciona com uma resposta local de fallback, mas para usar IA real rode o backend local. Nunca coloque a chave da OpenAI dentro do app Flutter.
+
+Crie o arquivo de ambiente:
 
 ```bash
 cd backend_ai
 copy .env.example .env
 ```
 
-Edite `backend_ai/.env` e coloque sua chave:
+Edite `backend_ai/.env` e preencha:
 
 ```text
 OPENAI_API_KEY=sua_chave_aqui
@@ -37,28 +60,55 @@ OPENAI_MODEL=gpt-4.1-mini
 PORT=3001
 ```
 
-Depois rode o backend com Dart:
+Depois execute o backend com uma das opcoes abaixo.
+
+Com Node.js:
+
+```bash
+npm install
+npm start
+```
+
+Ou com Dart:
 
 ```bash
 dart server.dart
 ```
 
-Em outro terminal, rode o app no emulador Android:
+Em outro terminal, volte para a raiz do projeto e rode o app:
 
 ```bash
-flutter run -d emulator-5554
+flutter run
 ```
 
-Se mudar a porta do backend, passe a URL para o Flutter:
+No emulador Android, a URL padrao do backend deve ser `http://10.0.2.2:3001`. Se precisar informar manualmente:
 
 ```bash
 flutter run -d emulator-5554 --dart-define=AI_BACKEND_URL=http://10.0.2.2:3001
 ```
 
-## Verificação
+Para Chrome ou Windows, use localhost:
+
+```bash
+flutter run -d chrome --dart-define=AI_BACKEND_URL=http://localhost:3001
+```
+
+## Verificacao
 
 ```bash
 flutter analyze
 flutter test
 flutter build apk --debug
+```
+
+## Estrutura
+
+```text
+lib/            Codigo principal do app Flutter
+backend_ai/     Backend local do consultor de IA
+android/        Projeto Android gerado pelo Flutter
+ios/            Projeto iOS gerado pelo Flutter
+web/            Suporte para Flutter Web
+documentacao/   Arquivos de documentacao do projeto
+test/           Testes automatizados
 ```

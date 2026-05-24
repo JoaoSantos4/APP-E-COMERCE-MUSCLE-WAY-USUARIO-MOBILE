@@ -1,4 +1,4 @@
-import 'package:app_muscley/src/models/produto_model.dart';
+﻿import 'package:pi/src/models/produto_model.dart';
 
 class CarrinhoItemModel {
   final ProdutoModel produto;
@@ -15,3 +15,4 @@ class CarrinhoItemModel {
     );
   }
 }
+

@@ -1,8 +1,8 @@
-import 'package:app_muscley/src/database/usuario_database.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
-import 'package:app_muscley/src/widgets/botao_widget.dart';
-import 'package:app_muscley/src/widgets/brand_logo_widget.dart';
-import 'package:app_muscley/src/widgets/campo_formulario_widget.dart';
+﻿import 'package:pi/src/database/usuario_database.dart';
+import 'package:pi/src/theme/app_theme.dart';
+import 'package:pi/src/widgets/botao_widget.dart';
+import 'package:pi/src/widgets/brand_logo_widget.dart';
+import 'package:pi/src/widgets/campo_formulario_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -34,7 +34,7 @@ class _CadastroPageState extends State<CadastroPage> {
     if (sucesso) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Usuário cadastrado com sucesso!'),
+          content: Text('UsuÃ¡rio cadastrado com sucesso!'),
           backgroundColor: AppTheme.success,
         ),
       );
@@ -45,7 +45,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Este e-mail já está cadastrado.'),
+        content: Text('Este e-mail jÃ¡ estÃ¡ cadastrado.'),
         backgroundColor: AppTheme.danger,
       ),
     );
@@ -82,7 +82,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Cadastre-se para salvar seu carrinho e receber sugestões da IA.',
+                  'Cadastre-se para salvar seu carrinho e receber sugestÃµes da IA.',
                   style: TextStyle(color: AppTheme.textMuted, fontSize: 15),
                 ),
                 const SizedBox(height: 26),
@@ -91,7 +91,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   icon: Icons.person_outline,
                   controller: nomeController,
                   obscure: false,
-                  validatorless: Validatorless.required('Campo obrigatório'),
+                  validatorless: Validatorless.required('Campo obrigatÃ³rio'),
                 ),
                 const SizedBox(height: 16),
                 CampoFormularioWidget(
@@ -100,8 +100,8 @@ class _CadastroPageState extends State<CadastroPage> {
                   controller: emailController,
                   obscure: false,
                   validatorless: Validatorless.multiple([
-                    Validatorless.required('Campo obrigatório'),
-                    Validatorless.email('E-mail inválido'),
+                    Validatorless.required('Campo obrigatÃ³rio'),
+                    Validatorless.email('E-mail invÃ¡lido'),
                   ]),
                 ),
                 const SizedBox(height: 16),
@@ -111,8 +111,8 @@ class _CadastroPageState extends State<CadastroPage> {
                   controller: senhaController,
                   obscure: true,
                   validatorless: Validatorless.multiple([
-                    Validatorless.required('Campo obrigatório'),
-                    Validatorless.min(8, 'Mínimo 8 caracteres'),
+                    Validatorless.required('Campo obrigatÃ³rio'),
+                    Validatorless.min(8, 'MÃ­nimo 8 caracteres'),
                   ]),
                 ),
                 const SizedBox(height: 16),
@@ -122,10 +122,10 @@ class _CadastroPageState extends State<CadastroPage> {
                   controller: confirmarSenhaController,
                   obscure: true,
                   validatorless: Validatorless.multiple([
-                    Validatorless.required('Campo obrigatório'),
+                    Validatorless.required('Campo obrigatÃ³rio'),
                     Validatorless.compare(
                       senhaController,
-                      'As senhas são diferentes',
+                      'As senhas sÃ£o diferentes',
                     ),
                   ]),
                 ),
@@ -143,3 +143,4 @@ class _CadastroPageState extends State<CadastroPage> {
     );
   }
 }
+

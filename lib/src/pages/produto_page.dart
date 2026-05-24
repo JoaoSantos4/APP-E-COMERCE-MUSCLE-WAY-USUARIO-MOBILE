@@ -1,7 +1,7 @@
-import 'package:app_muscley/src/controllers/carrinho_controller.dart';
-import 'package:app_muscley/src/models/produto_model.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
-import 'package:app_muscley/src/utils/preco_utils.dart';
+﻿import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/models/produto_model.dart';
+import 'package:pi/src/theme/app_theme.dart';
+import 'package:pi/src/utils/preco_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProdutoPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class ProdutoPage extends StatelessWidget {
     if (produto == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Produto')),
-        body: const Center(child: Text('Produto não encontrado.')),
+        body: const Center(child: Text('Produto nÃ£o encontrado.')),
       );
     }
 
@@ -59,7 +59,7 @@ class ProdutoPage extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'no Pix com 7% OFF ou ${PrecoUtils.formatar(produto.preco)} no cartão',
+            'no Pix com 7% OFF ou ${PrecoUtils.formatar(produto.preco)} no cartÃ£o',
             style: const TextStyle(color: AppTheme.textMuted),
           ),
           const SizedBox(height: 24),
@@ -142,7 +142,7 @@ class ProdutoPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Descrição',
+            'DescriÃ§Ã£o',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -171,7 +171,7 @@ class _BeneficiosProduto extends StatelessWidget {
   Widget build(BuildContext context) {
     const beneficios = [
       (Icons.verified_outlined, 'Produto selecionado'),
-      (Icons.local_shipping_outlined, 'Entrega rápida'),
+      (Icons.local_shipping_outlined, 'Entrega rÃ¡pida'),
       (Icons.lock_outline, 'Compra segura'),
     ];
 
@@ -205,3 +205,4 @@ class _BeneficiosProduto extends StatelessWidget {
     );
   }
 }
+

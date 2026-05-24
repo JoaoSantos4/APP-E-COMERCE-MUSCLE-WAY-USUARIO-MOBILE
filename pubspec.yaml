@@ -1,5 +1,5 @@
-name: app_muscley
-description: "A new Flutter project."
+name: pi
+description: "PI - aplicativo Flutter de e-commerce de suplementos."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -79,3 +79,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+

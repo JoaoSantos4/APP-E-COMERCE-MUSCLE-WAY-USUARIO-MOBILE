@@ -1,4 +1,4 @@
-import 'package:app_muscley/src/app.muscley.dart';
+﻿import 'package:pi/src/app.muscley.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -10,3 +10,4 @@ void main() {
     expect(find.text('Criar uma conta Muscleway'), findsOneWidget);
   });
 }
+

@@ -1,8 +1,8 @@
-import 'package:app_muscley/src/database/produto_database.dart';
-import 'package:app_muscley/src/models/chat_mensagem_model.dart';
-import 'package:app_muscley/src/models/produto_model.dart';
-import 'package:app_muscley/src/services/assistente_suplementos_service.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
+﻿import 'package:pi/src/database/produto_database.dart';
+import 'package:pi/src/models/chat_mensagem_model.dart';
+import 'package:pi/src/models/produto_model.dart';
+import 'package:pi/src/services/assistente_suplementos_service.dart';
+import 'package:pi/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ChatIaPage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _ChatIaPageState extends State<ChatIaPage> {
   final mensagens = <ChatMensagemModel>[
     const ChatMensagemModel(
       texto:
-          'Olá! Sou o consultor Muscleway IA. Me conte seu objetivo e eu indico produtos do catálogo.',
+          'OlÃ¡! Sou o consultor Muscleway IA. Me conte seu objetivo e eu indico produtos do catÃ¡logo.',
       enviadaPeloUsuario: false,
     ),
   ];
@@ -162,7 +162,7 @@ class _ChatIaPageState extends State<ChatIaPage> {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'Sugestões por objetivo: massa, energia, emagrecimento, recuperação ou imunidade.',
+                  'SugestÃµes por objetivo: massa, energia, emagrecimento, recuperaÃ§Ã£o ou imunidade.',
                   style: TextStyle(color: AppTheme.textMuted, height: 1.35),
                 ),
               ],
@@ -178,7 +178,7 @@ class _ChatIaPageState extends State<ChatIaPage> {
       'Quero ganhar massa',
       'Quero emagrecer',
       'Preciso de energia',
-      'Recuperação muscular',
+      'RecuperaÃ§Ã£o muscular',
     ];
 
     return SizedBox(
@@ -286,3 +286,4 @@ class _MensagemBolha extends StatelessWidget {
     );
   }
 }
+

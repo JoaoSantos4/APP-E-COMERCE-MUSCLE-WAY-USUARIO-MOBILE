@@ -1,4 +1,4 @@
-import 'package:app_muscley/src/models/usuario_model.dart';
+﻿import 'package:pi/src/models/usuario_model.dart';
 
 class SessaoController {
   static UsuarioModel? usuarioLogado;
@@ -21,3 +21,4 @@ class SessaoController {
     usuarioLogado = null;
   }
 }
+

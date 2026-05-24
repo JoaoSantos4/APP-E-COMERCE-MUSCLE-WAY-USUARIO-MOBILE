@@ -1,11 +1,11 @@
 {
-    "name": "app_muscley",
-    "short_name": "app_muscley",
+    "name": "PI",
+    "short_name": "PI",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Aplicativo Flutter de e-commerce de suplementos.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
@@ -33,3 +33,4 @@
         }
     ]
 }
+

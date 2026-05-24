@@ -1,6 +1,6 @@
-import 'package:app_muscley/src/models/produto_model.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
-import 'package:app_muscley/src/utils/preco_utils.dart';
+﻿import 'package:pi/src/models/produto_model.dart';
+import 'package:pi/src/theme/app_theme.dart';
+import 'package:pi/src/utils/preco_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProdutoCardWidget extends StatelessWidget {
@@ -111,7 +111,7 @@ class ProdutoCardWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'no Pix ou ${PrecoUtils.formatar(produto.preco)} no cartão',
+                        'no Pix ou ${PrecoUtils.formatar(produto.preco)} no cartÃ£o',
                         style: const TextStyle(
                           color: AppTheme.textMuted,
                           fontSize: 12,
@@ -173,3 +173,4 @@ class _Etiqueta extends StatelessWidget {
     );
   }
 }
+

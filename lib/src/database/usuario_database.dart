@@ -1,6 +1,6 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 
-import 'package:app_muscley/src/models/usuario_model.dart';
+import 'package:pi/src/models/usuario_model.dart';
 import 'package:crypto/crypto.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -109,3 +109,4 @@ class UsuarioDatabase {
     return UsuarioModel.fromMap(resultado.first);
   }
 }
+

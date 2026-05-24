@@ -1,5 +1,5 @@
-import 'package:app_muscley/src/models/carrinho_item_model.dart';
-import 'package:app_muscley/src/models/produto_model.dart';
+﻿import 'package:pi/src/models/carrinho_item_model.dart';
+import 'package:pi/src/models/produto_model.dart';
 
 class CarrinhoController {
   static final List<CarrinhoItemModel> _itens = [];
@@ -54,3 +54,4 @@ class CarrinhoController {
     _itens.clear();
   }
 }
+

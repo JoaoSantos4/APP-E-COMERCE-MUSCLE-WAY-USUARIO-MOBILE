@@ -1,10 +1,10 @@
-import 'package:app_muscley/src/controllers/carrinho_controller.dart';
-import 'package:app_muscley/src/controllers/sessao_controller.dart';
-import 'package:app_muscley/src/database/produto_database.dart';
-import 'package:app_muscley/src/models/produto_model.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
-import 'package:app_muscley/src/widgets/brand_logo_widget.dart';
-import 'package:app_muscley/src/widgets/produto_card_widget.dart';
+﻿import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/controllers/sessao_controller.dart';
+import 'package:pi/src/database/produto_database.dart';
+import 'package:pi/src/models/produto_model.dart';
+import 'package:pi/src/theme/app_theme.dart';
+import 'package:pi/src/widgets/brand_logo_widget.dart';
+import 'package:pi/src/widgets/produto_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(18, 10, 18, 24),
                 children: [
                   Text(
-                    'Olá, ${SessaoController.primeiroNome}',
+                    'OlÃ¡, ${SessaoController.primeiroNome}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -255,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Proteínas, creatina e pré-treinos para cada objetivo.',
+                  'ProteÃ­nas, creatina e prÃ©-treinos para cada objetivo.',
                   style: TextStyle(color: Colors.white70, height: 1.35),
                 ),
                 const SizedBox(height: 16),
@@ -295,7 +295,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _beneficios() {
     const itens = [
-      (Icons.local_shipping_outlined, 'Frete grátis acima de R\$ 150'),
+      (Icons.local_shipping_outlined, 'Frete grÃ¡tis acima de R\$ 150'),
       (Icons.payment_outlined, '7% OFF no Pix'),
       (Icons.verified_outlined, 'Compra segura'),
     ];
@@ -390,7 +390,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Receba sugestões de suplementos para seu objetivo.',
+                    'Receba sugestÃµes de suplementos para seu objetivo.',
                     style: TextStyle(color: AppTheme.textMuted, height: 1.3),
                   ),
                 ],
@@ -496,3 +496,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

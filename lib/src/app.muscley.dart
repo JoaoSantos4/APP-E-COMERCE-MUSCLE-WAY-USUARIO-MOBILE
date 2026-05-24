@@ -1,10 +1,10 @@
-import 'package:app_muscley/src/pages/cadastro_page.dart';
-import 'package:app_muscley/src/pages/carrinho_page.dart';
-import 'package:app_muscley/src/pages/chat_ia_page.dart';
-import 'package:app_muscley/src/pages/home_page.dart';
-import 'package:app_muscley/src/pages/login_page.dart';
-import 'package:app_muscley/src/pages/produto_page.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
+﻿import 'package:pi/src/pages/cadastro_page.dart';
+import 'package:pi/src/pages/carrinho_page.dart';
+import 'package:pi/src/pages/chat_ia_page.dart';
+import 'package:pi/src/pages/home_page.dart';
+import 'package:pi/src/pages/login_page.dart';
+import 'package:pi/src/pages/produto_page.dart';
+import 'package:pi/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppMuscley extends StatelessWidget {
@@ -27,3 +27,4 @@ class AppMuscley extends StatelessWidget {
     );
   }
 }
+

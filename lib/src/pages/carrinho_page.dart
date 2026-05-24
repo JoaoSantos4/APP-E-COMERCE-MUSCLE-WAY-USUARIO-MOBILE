@@ -1,7 +1,7 @@
-import 'package:app_muscley/src/controllers/carrinho_controller.dart';
-import 'package:app_muscley/src/models/carrinho_item_model.dart';
-import 'package:app_muscley/src/theme/app_theme.dart';
-import 'package:app_muscley/src/utils/preco_utils.dart';
+﻿import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/models/carrinho_item_model.dart';
+import 'package:pi/src/theme/app_theme.dart';
+import 'package:pi/src/utils/preco_utils.dart';
 import 'package:flutter/material.dart';
 
 class CarrinhoPage extends StatefulWidget {
@@ -115,8 +115,8 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               Expanded(
                 child: Text(
                   temFreteGratis
-                      ? 'Você ganhou frete grátis'
-                      : 'Faltam ${PrecoUtils.formatar(valorRestanteFrete)} para frete grátis',
+                      ? 'VocÃª ganhou frete grÃ¡tis'
+                      : 'Faltam ${PrecoUtils.formatar(valorRestanteFrete)} para frete grÃ¡tis',
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
@@ -268,7 +268,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
             const SizedBox(height: 8),
             _linhaResumo(
               'Entrega',
-              valorRestanteFrete == 0 ? 'Grátis' : 'A calcular',
+              valorRestanteFrete == 0 ? 'GrÃ¡tis' : 'A calcular',
             ),
             const Divider(height: 24, color: AppTheme.border),
             _linhaResumo(
@@ -343,7 +343,7 @@ class _CarrinhoVazio extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Seu carrinho está vazio',
+              'Seu carrinho estÃ¡ vazio',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
@@ -369,3 +369,4 @@ class _CarrinhoVazio extends StatelessWidget {
     );
   }
 }
+

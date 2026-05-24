@@ -1,6 +1,6 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 
-import 'package:app_muscley/src/models/produto_model.dart';
+import 'package:pi/src/models/produto_model.dart';
 import 'package:http/http.dart' as http;
 
 class AssistenteSuplementosService {
@@ -71,12 +71,12 @@ class AssistenteSuplementosService {
     final sugestoes = _filtrarProdutos(texto, produtos).take(3).toList();
 
     if (sugestoes.isEmpty) {
-      return 'A IA real não respondeu agora e não encontrei uma sugestão exata no catálogo local. Tente algo como: "quero ganhar massa", "quero emagrecer" ou "preciso de energia para treino".';
+      return 'A IA real nÃ£o respondeu agora e nÃ£o encontrei uma sugestÃ£o exata no catÃ¡logo local. Tente algo como: "quero ganhar massa", "quero emagrecer" ou "preciso de energia para treino".';
     }
 
     final objetivo = _identificarObjetivo(texto);
     final buffer = StringBuffer()
-      ..writeln('A IA real não respondeu agora, então usei o consultor local.')
+      ..writeln('A IA real nÃ£o respondeu agora, entÃ£o usei o consultor local.')
       ..writeln()
       ..writeln('Para $objetivo, eu olharia estes produtos:')
       ..writeln();
@@ -90,7 +90,7 @@ class AssistenteSuplementosService {
     buffer
       ..writeln()
       ..write(
-        'Dica: confira a descrição e escolha de acordo com seu objetivo. Se tiver restrição médica, use orientação profissional.',
+        'Dica: confira a descriÃ§Ã£o e escolha de acordo com seu objetivo. Se tiver restriÃ§Ã£o mÃ©dica, use orientaÃ§Ã£o profissional.',
       );
 
     return buffer.toString();
@@ -101,18 +101,18 @@ class AssistenteSuplementosService {
     List<ProdutoModel> produtos,
   ) {
     if (_contem(texto, ['massa', 'hipertrofia', 'ganhar peso', 'peso'])) {
-      return _porTermos(produtos, ['whey', 'protein', 'hipercalórico', 'kit']);
+      return _porTermos(produtos, ['whey', 'protein', 'hipercalÃ³rico', 'kit']);
     }
     if (_contem(texto, ['emagrecer', 'emagrecimento', 'queima', 'gordura'])) {
       return _porTermos(produtos, ['thermo', 'carnitine', 'emagrecedor']);
     }
-    if (_contem(texto, ['energia', 'foco', 'treino', 'pré treino'])) {
-      return _porTermos(produtos, ['beta', 'pré-treino', 'performance']);
+    if (_contem(texto, ['energia', 'foco', 'treino', 'prÃ© treino'])) {
+      return _porTermos(produtos, ['beta', 'prÃ©-treino', 'performance']);
     }
-    if (_contem(texto, ['recuperação', 'recuperar', 'dor', 'amino'])) {
+    if (_contem(texto, ['recuperaÃ§Ã£o', 'recuperar', 'dor', 'amino'])) {
       return _porTermos(produtos, ['bcaa', 'glutamine', 'creatine']);
     }
-    if (_contem(texto, ['imunidade', 'vitamina', 'saúde'])) {
+    if (_contem(texto, ['imunidade', 'vitamina', 'saÃºde'])) {
       return _porTermos(produtos, ['vit', 'imunidade']);
     }
     if (_contem(texto, ['kit', 'combo', 'conjunto'])) {
@@ -149,14 +149,14 @@ class AssistenteSuplementosService {
     if (_contem(texto, ['emagrecer', 'emagrecimento', 'queima', 'gordura'])) {
       return 'emagrecimento';
     }
-    if (_contem(texto, ['energia', 'foco', 'treino', 'pré treino'])) {
+    if (_contem(texto, ['energia', 'foco', 'treino', 'prÃ© treino'])) {
       return 'mais energia no treino';
     }
-    if (_contem(texto, ['recuperação', 'recuperar', 'dor', 'amino'])) {
-      return 'recuperação muscular';
+    if (_contem(texto, ['recuperaÃ§Ã£o', 'recuperar', 'dor', 'amino'])) {
+      return 'recuperaÃ§Ã£o muscular';
     }
-    if (_contem(texto, ['imunidade', 'vitamina', 'saúde'])) {
-      return 'saúde e imunidade';
+    if (_contem(texto, ['imunidade', 'vitamina', 'saÃºde'])) {
+      return 'saÃºde e imunidade';
     }
     return 'seu objetivo';
   }
@@ -169,3 +169,4 @@ class AssistenteSuplementosService {
     return 'R\$ ${valor.toStringAsFixed(2).replaceAll('.', ',')}';
   }
 }
+
