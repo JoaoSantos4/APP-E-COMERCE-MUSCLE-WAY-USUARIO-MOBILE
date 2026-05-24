@@ -64,7 +64,7 @@ class ProdutoDatabase {
       descricao: 'PrÃ©-treino para energia, foco e desempenho.',
       preco: 62.90,
       categoria: 'PRÃ‰-TREINOS',
-      imagem: '',
+      imagem: 'assets/produtos/beta-nos-limao.png',
     ),
     ProdutoModel(
       nome: 'Top Whey - Refil 900g',
@@ -131,7 +131,8 @@ class ProdutoDatabase {
     ),
     ProdutoModel(
       nome: 'Thermo Pro Hard 400mg',
-      descricao: 'TermogÃªnico para auxiliar na queima de gordura e disposiÃ§Ã£o.',
+      descricao:
+          'TermogÃªnico para auxiliar na queima de gordura e disposiÃ§Ã£o.',
       preco: 24.90,
       categoria: 'EMAGRECEDORES',
       imagem: '',
@@ -222,4 +223,3 @@ class ProdutoDatabase {
     ),
   ];
 }
-
