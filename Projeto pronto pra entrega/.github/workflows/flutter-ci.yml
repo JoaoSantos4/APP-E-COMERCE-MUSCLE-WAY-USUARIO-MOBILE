@@ -1,0 +1,32 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [main, muscleway-app]
+  pull_request:
+    branches: [main, muscleway-app]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        working-directory: app_muscley
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: app_muscley
+        run: flutter analyze
+
+      - name: Test
+        working-directory: app_muscley
+        run: flutter test
