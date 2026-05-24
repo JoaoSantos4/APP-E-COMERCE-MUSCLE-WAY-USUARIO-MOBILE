@@ -1,4 +1,6 @@
 import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/controllers/sessao_controller.dart';
+import 'package:pi/src/database/pedido_database.dart';
 import 'package:pi/src/models/carrinho_item_model.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/utils/preco_utils.dart';
@@ -13,6 +15,8 @@ class CarrinhoPage extends StatefulWidget {
 
 class _CarrinhoPageState extends State<CarrinhoPage> {
   static const double freteGratisAcimaDe = 150;
+  final cupomController = TextEditingController();
+  String cupomAplicado = '';
 
   double get valorRestanteFrete {
     final restante = freteGratisAcimaDe - CarrinhoController.valorTotal;
@@ -23,16 +27,131 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
     return (CarrinhoController.valorTotal / freteGratisAcimaDe).clamp(0, 1);
   }
 
+  double get desconto {
+    return cupomAplicado == 'MUSCLE10' ? CarrinhoController.valorTotal * 0.10 : 0;
+  }
+
+  double get totalComDesconto {
+    final total = CarrinhoController.valorTotal - desconto;
+    return total < 0 ? 0 : total;
+  }
+
   void atualizarQuantidade(VoidCallback acao) {
     setState(acao);
+  }
+
+  void aplicarCupom() {
+    final cupom = cupomController.text.trim().toUpperCase();
+
+    setState(() {
+      cupomAplicado = cupom == 'MUSCLE10' ? cupom : '';
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          cupomAplicado.isEmpty
+              ? 'Cupom invalido.'
+              : 'Cupom MUSCLE10 aplicado.',
+        ),
+        backgroundColor: cupomAplicado.isEmpty ? AppTheme.danger : AppTheme.success,
+      ),
+    );
   }
 
   Future<void> finalizarPedido() async {
     if (CarrinhoController.itens.isEmpty) return;
 
-    final total = PrecoUtils.formatar(CarrinhoController.valorTotal);
+    final enderecoController = TextEditingController();
+    String pagamento = 'Pix';
+
+    final confirmado = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              backgroundColor: AppTheme.surface,
+              title: const Text('Finalizar compra'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: enderecoController,
+                    decoration: const InputDecoration(
+                      labelText: 'Endereco de entrega',
+                      prefixIcon: Icon(Icons.location_on_outlined),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  DropdownButtonFormField<String>(
+                    value: pagamento,
+                    decoration: const InputDecoration(
+                      labelText: 'Pagamento',
+                      prefixIcon: Icon(Icons.payment_outlined),
+                    ),
+                    items: const [
+                      DropdownMenuItem(value: 'Pix', child: Text('Pix')),
+                      DropdownMenuItem(value: 'Cartao', child: Text('Cartao')),
+                      DropdownMenuItem(value: 'Dinheiro', child: Text('Dinheiro')),
+                    ],
+                    onChanged: (valor) {
+                      if (valor == null) return;
+                      setDialogState(() => pagamento = valor);
+                    },
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Cancelar'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Confirmar'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+
+    if (confirmado != true) return;
+
+    final endereco = enderecoController.text.trim();
+    if (endereco.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Informe o endereco de entrega.'),
+          backgroundColor: AppTheme.danger,
+        ),
+      );
+      return;
+    }
+
+    final usuario = SessaoController.usuarioLogado;
+    final pedidoId = await PedidoDatabase.cadastrarPedido(
+      usuarioEmail: usuario?.email ?? 'sem-login',
+      usuarioNome: usuario?.nome ?? 'Cliente',
+      endereco: endereco,
+      pagamento: pagamento,
+      cupom: cupomAplicado,
+      subtotal: CarrinhoController.valorTotal,
+      desconto: desconto,
+      total: totalComDesconto,
+      itens: CarrinhoController.itens,
+    );
+
     CarrinhoController.limpar();
-    setState(() {});
+    setState(() {
+      cupomAplicado = '';
+      cupomController.clear();
+    });
+
+    if (!mounted) return;
 
     await showDialog<void>(
       context: context,
@@ -40,7 +159,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
         return AlertDialog(
           backgroundColor: AppTheme.surface,
           title: const Text('Pedido finalizado'),
-          content: Text('Compra de $total registrada com sucesso.'),
+          content: Text('Pedido #$pedidoId registrado com sucesso.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -50,6 +169,12 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    cupomController.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,6 +188,11 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
         ),
         actions: [
+          IconButton(
+            tooltip: 'Historico',
+            onPressed: () => Navigator.pushNamed(context, '/historico'),
+            icon: const Icon(Icons.receipt_long_outlined),
+          ),
           if (itens.isNotEmpty)
             IconButton(
               tooltip: 'Limpar carrinho',
@@ -77,6 +207,8 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               padding: const EdgeInsets.all(18),
               children: [
                 _freteCard(),
+                const SizedBox(height: 16),
+                _cupomCard(),
                 const SizedBox(height: 16),
                 ...itens.map(
                   (item) => Padding(
@@ -134,6 +266,36 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               color: AppTheme.primary,
               backgroundColor: AppTheme.surfaceLight,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _cupomCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppTheme.surface,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppTheme.border),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: cupomController,
+              textCapitalization: TextCapitalization.characters,
+              decoration: const InputDecoration(
+                hintText: 'Cupom MUSCLE10',
+                prefixIcon: Icon(Icons.local_offer_outlined),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          FilledButton(
+            onPressed: aplicarCupom,
+            child: const Text('Aplicar'),
           ),
         ],
       ),
@@ -276,6 +438,10 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               'Subtotal',
               PrecoUtils.formatar(CarrinhoController.valorTotal),
             ),
+            if (desconto > 0) ...[
+              const SizedBox(height: 8),
+              _linhaResumo('Desconto', '- ${PrecoUtils.formatar(desconto)}'),
+            ],
             const SizedBox(height: 8),
             _linhaResumo(
               'Entrega',
@@ -284,7 +450,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
             const Divider(height: 24, color: AppTheme.border),
             _linhaResumo(
               'Total',
-              PrecoUtils.formatar(CarrinhoController.valorTotal),
+              PrecoUtils.formatar(totalComDesconto),
               destaque: true,
             ),
             const SizedBox(height: 14),

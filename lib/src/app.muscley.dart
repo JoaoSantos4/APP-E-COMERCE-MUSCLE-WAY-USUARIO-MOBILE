@@ -2,6 +2,8 @@ import 'package:pi/src/pages/admin_page.dart';
 import 'package:pi/src/pages/cadastro_page.dart';
 import 'package:pi/src/pages/carrinho_page.dart';
 import 'package:pi/src/pages/chat_ia_page.dart';
+import 'package:pi/src/pages/favoritos_page.dart';
+import 'package:pi/src/pages/historico_pedidos_page.dart';
 import 'package:pi/src/pages/home_page.dart';
 import 'package:pi/src/pages/login_page.dart';
 import 'package:pi/src/pages/produto_page.dart';
@@ -25,6 +27,8 @@ class AppMuscley extends StatelessWidget {
         '/carrinho': (_) => const CarrinhoPage(),
         '/produto': (_) => const ProdutoPage(),
         '/chat-ia': (_) => const ChatIaPage(),
+        '/favoritos': (_) => const FavoritosPage(),
+        '/historico': (_) => const HistoricoPedidosPage(),
       },
     );
   }

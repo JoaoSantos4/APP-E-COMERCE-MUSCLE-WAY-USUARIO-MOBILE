@@ -7,11 +7,15 @@ class ProdutoCardWidget extends StatelessWidget {
   final ProdutoModel produto;
   final VoidCallback onAdicionar;
   final VoidCallback onVerDetalhes;
+  final VoidCallback? onFavorito;
+  final bool favorito;
 
   const ProdutoCardWidget({
     required this.produto,
     required this.onAdicionar,
     required this.onVerDetalhes,
+    this.onFavorito,
+    this.favorito = false,
     super.key,
   });
 
@@ -95,6 +99,15 @@ class ProdutoCardWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+                if (onFavorito != null)
+                  IconButton(
+                    tooltip: favorito ? 'Remover dos favoritos' : 'Favoritar',
+                    onPressed: onFavorito,
+                    icon: Icon(
+                      favorito ? Icons.favorite : Icons.favorite_border,
+                      color: favorito ? AppTheme.danger : Colors.white70,
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 12),

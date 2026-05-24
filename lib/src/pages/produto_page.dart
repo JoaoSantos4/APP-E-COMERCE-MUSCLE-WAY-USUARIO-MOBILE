@@ -1,15 +1,27 @@
 import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/controllers/favoritos_controller.dart';
 import 'package:pi/src/models/produto_model.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/utils/preco_utils.dart';
 import 'package:flutter/material.dart';
 
-class ProdutoPage extends StatelessWidget {
+class ProdutoPage extends StatefulWidget {
   const ProdutoPage({super.key});
 
+  @override
+  State<ProdutoPage> createState() => _ProdutoPageState();
+}
+
+class _ProdutoPageState extends State<ProdutoPage> {
   void adicionarAoCarrinho(BuildContext context, ProdutoModel produto) {
     CarrinhoController.adicionar(produto);
     Navigator.pushNamed(context, '/carrinho');
+  }
+
+  void alternarFavorito(ProdutoModel produto) {
+    setState(() {
+      FavoritosController.alternar(produto);
+    });
   }
 
   @override
@@ -23,8 +35,22 @@ class ProdutoPage extends StatelessWidget {
       );
     }
 
+    final favorito = FavoritosController.contem(produto);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Detalhes do produto')),
+      appBar: AppBar(
+        title: const Text('Detalhes do produto'),
+        actions: [
+          IconButton(
+            tooltip: favorito ? 'Remover dos favoritos' : 'Favoritar',
+            onPressed: () => alternarFavorito(produto),
+            icon: Icon(
+              favorito ? Icons.favorite : Icons.favorite_border,
+              color: favorito ? AppTheme.danger : Colors.white,
+            ),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(18),
         children: [

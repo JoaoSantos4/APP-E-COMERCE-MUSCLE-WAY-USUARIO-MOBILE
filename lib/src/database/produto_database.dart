@@ -45,6 +45,23 @@ class ProdutoDatabase {
     await db.insert('produtos', produto.toMap());
   }
 
+  static Future<void> atualizarProduto(ProdutoModel produto) async {
+    final db = await getDatabase();
+
+    await db.update(
+      'produtos',
+      produto.toMap(),
+      where: 'id = ?',
+      whereArgs: [produto.id],
+    );
+  }
+
+  static Future<void> removerProduto(int id) async {
+    final db = await getDatabase();
+
+    await db.delete('produtos', where: 'id = ?', whereArgs: [id]);
+  }
+
   static Future<List<ProdutoModel>> listarProdutos() async {
     final db = await getDatabase();
     final maps = await db.query('produtos', orderBy: 'categoria, nome');
