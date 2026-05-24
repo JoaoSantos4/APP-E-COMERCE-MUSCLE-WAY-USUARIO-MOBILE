@@ -1,4 +1,4 @@
-﻿import 'package:pi/src/models/produto_model.dart';
+import 'package:pi/src/models/produto_model.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/utils/preco_utils.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +57,22 @@ class ProdutoCardWidget extends StatelessWidget {
                       color: AppTheme.primary.withValues(alpha: 0.28),
                     ),
                   ),
-                  child: Icon(
-                    iconeCategoria,
-                    color: AppTheme.primary,
-                    size: 34,
-                  ),
+                  child: produto.imagem.isEmpty
+                      ? Icon(
+                          iconeCategoria,
+                          color: AppTheme.primary,
+                          size: 34,
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(14),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Image.asset(
+                              produto.imagem,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 14),
                 Expanded(
@@ -111,7 +122,7 @@ class ProdutoCardWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'no Pix ou ${PrecoUtils.formatar(produto.preco)} no cartÃ£o',
+                        'no Pix ou ${PrecoUtils.formatar(produto.preco)} no cartao',
                         style: const TextStyle(
                           color: AppTheme.textMuted,
                           fontSize: 12,
@@ -173,4 +184,3 @@ class _Etiqueta extends StatelessWidget {
     );
   }
 }
-

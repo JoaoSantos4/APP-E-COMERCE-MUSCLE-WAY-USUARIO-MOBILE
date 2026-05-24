@@ -1,4 +1,4 @@
-﻿import 'package:pi/src/controllers/carrinho_controller.dart';
+import 'package:pi/src/controllers/carrinho_controller.dart';
 import 'package:pi/src/models/produto_model.dart';
 import 'package:pi/src/theme/app_theme.dart';
 import 'package:pi/src/utils/preco_utils.dart';
@@ -19,7 +19,7 @@ class ProdutoPage extends StatelessWidget {
     if (produto == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Produto')),
-        body: const Center(child: Text('Produto nÃ£o encontrado.')),
+        body: const Center(child: Text('Produto nao encontrado.')),
       );
     }
 
@@ -59,7 +59,7 @@ class ProdutoPage extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'no Pix com 7% OFF ou ${PrecoUtils.formatar(produto.preco)} no cartÃ£o',
+            'no Pix com 7% OFF ou ${PrecoUtils.formatar(produto.preco)} no cartao',
             style: const TextStyle(color: AppTheme.textMuted),
           ),
           const SizedBox(height: 24),
@@ -118,12 +118,20 @@ class ProdutoPage extends StatelessWidget {
               ),
             ),
           ),
-          const Center(
-            child: Icon(
-              Icons.local_drink_outlined,
-              size: 104,
-              color: AppTheme.primary,
-            ),
+          Center(
+            child: produto.imagem.isEmpty
+                ? const Icon(
+                    Icons.local_drink_outlined,
+                    size: 104,
+                    color: AppTheme.primary,
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Image.asset(
+                      produto.imagem,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
           ),
         ],
       ),
@@ -142,7 +150,7 @@ class ProdutoPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'DescriÃ§Ã£o',
+            'Descricao',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -171,7 +179,7 @@ class _BeneficiosProduto extends StatelessWidget {
   Widget build(BuildContext context) {
     const beneficios = [
       (Icons.verified_outlined, 'Produto selecionado'),
-      (Icons.local_shipping_outlined, 'Entrega rÃ¡pida'),
+      (Icons.local_shipping_outlined, 'Entrega rapida'),
       (Icons.lock_outline, 'Compra segura'),
     ];
 
@@ -205,4 +213,3 @@ class _BeneficiosProduto extends StatelessWidget {
     );
   }
 }
-
