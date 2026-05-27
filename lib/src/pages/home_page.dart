@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(18, 10, 18, 24),
                 children: [
                   Text(
-                    'OlÃ¡, ${SessaoController.primeiroNome}',
+                    'Ola, ${SessaoController.primeiroNome}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -496,4 +496,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
 

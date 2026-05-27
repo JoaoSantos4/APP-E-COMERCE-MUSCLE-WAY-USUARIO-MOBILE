@@ -15,7 +15,7 @@ class ProdutoDatabase {
 
     _database = await openDatabase(
       path,
-      version: 2,
+      version: 3,
       onCreate: (db, version) async => _criarTabelaProdutos(db),
       onUpgrade: (db, oldVersion, newVersion) async {
         await db.execute('DROP TABLE IF EXISTS produtos');
@@ -340,48 +340,6 @@ class ProdutoDatabase {
       preco: 25.90,
       categoria: 'VITAMINAS',
       imagem: 'assets/produtos/vit-full.png',
-    ),
-    ProdutoModel(
-      nome: 'Kit Ganho de Massa',
-      descricao: 'Kit pronto para auxiliar no ganho de massa muscular.',
-      preco: 179.90,
-      categoria: 'KIT PRONTO',
-      imagem: '',
-    ),
-    ProdutoModel(
-      nome: 'Kit Hipertrofia',
-      descricao: 'Kit para suporte a hipertrofia e evolucao muscular.',
-      preco: 216.90,
-      categoria: 'KIT PRONTO',
-      imagem: '',
-    ),
-    ProdutoModel(
-      nome: 'Kit Emagrecedor',
-      descricao: 'Kit pronto para auxiliar no processo de emagrecimento.',
-      preco: 219.90,
-      categoria: 'KIT PRONTO',
-      imagem: '',
-    ),
-    ProdutoModel(
-      nome: 'Kit Performance',
-      descricao: 'Kit completo para performance, energia e recuperacao.',
-      preco: 260.90,
-      categoria: 'KIT PRONTO',
-      imagem: '',
-    ),
-    ProdutoModel(
-      nome: 'Camiseta Dry Fit Never Lose Your Way',
-      descricao: 'Camiseta dry fit confortavel para treino e uso diario.',
-      preco: 39.90,
-      categoria: 'ACESSORIOS',
-      imagem: '',
-    ),
-    ProdutoModel(
-      nome: 'Coqueteleira Muscleway - 600ml',
-      descricao: 'Coqueteleira de 600ml para preparo de suplementos.',
-      preco: 15.90,
-      categoria: 'ACESSORIOS',
-      imagem: '',
     ),
   ];
 }
