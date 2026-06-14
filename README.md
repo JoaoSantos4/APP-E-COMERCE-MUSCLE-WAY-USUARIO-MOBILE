@@ -34,7 +34,7 @@ flutter run -d <id-do-dispositivo>
 
 ## Como executar o backend de IA
 
-O app funciona com uma resposta local de fallback, mas para usar IA real rode o backend local. Nunca coloque a chave da OpenAI dentro do app Flutter.
+O app funciona com uma resposta local de fallback, mas para usar IA real rode o backend local.
 
 Crie o arquivo de ambiente:
 
