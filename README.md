@@ -1,6 +1,4 @@
-# PI
-
-PI e um aplicativo Flutter de e-commerce de suplementos com login, cadastro, catalogo de produtos, busca, carrinho de compras e consultor de IA.
+Um aplicativo Flutter de e-commerce de suplementos com login, cadastro, catalogo de produtos, busca, carrinho de compras e consultor de IA.
 
 ## Recursos principais
 
@@ -32,13 +30,6 @@ Para escolher um dispositivo especifico:
 ```bash
 flutter devices
 flutter run -d <id-do-dispositivo>
-```
-
-Exemplos comuns:
-
-```bash
-flutter run -d chrome
-flutter run -d emulator-5554
 ```
 
 ## Como executar o backend de IA
@@ -99,16 +90,4 @@ flutter run -d chrome --dart-define=AI_BACKEND_URL=http://localhost:3001
 flutter analyze
 flutter test
 flutter build apk --debug
-```
-
-## Estrutura
-
-```text
-lib/            Codigo principal do app Flutter
-backend_ai/     Backend local do consultor de IA
-android/        Projeto Android gerado pelo Flutter
-ios/            Projeto iOS gerado pelo Flutter
-web/            Suporte para Flutter Web
-documentacao/   Arquivos de documentacao do projeto
-test/           Testes automatizados
 ```
